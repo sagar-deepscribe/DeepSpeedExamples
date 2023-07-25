@@ -13,7 +13,7 @@ if [ "$ZERO_STAGE" == "" ]; then
 fi
 mkdir -p $OUTPUT
 
-deepspeed   --include localhost:0,1,2,3,4,5,6,7 --master_addr=127.0.0.1 --master_port=29532 /home/sagar/DeepScribeML/scripts/rlhf/training/step1_supervised_finetuning/main.py \
+deepspeed   --include localhost:0,1,2,3 --master_addr=127.0.0.1 --master_port=29532 /home/sagar/DeepScribeML/scripts/rlhf/training/step1_supervised_finetuning/main.py \
    --data_path /ml_dev/users/dong/data/unify/0.2.1 \
    --data_split 2,4,4 \
    --model_name_or_path /ml_dev/users/sagar/models/falcon-40b \
