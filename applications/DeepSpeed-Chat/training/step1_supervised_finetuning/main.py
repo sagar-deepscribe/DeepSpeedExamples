@@ -68,6 +68,13 @@ def parse_args():
         required=True,
     )
     parser.add_argument(
+        "--tokenizer_name_or_path",
+        type=str,
+        help=
+        "Path to pretrained model tokenizer or model identifier from huggingface.co/models.",
+        required=True,
+    )
+    parser.add_argument(
         "--per_device_train_batch_size",
         type=int,
         default=16,
@@ -214,7 +221,7 @@ def main():
 
     torch.distributed.barrier()
 
-    tokenizer = load_hf_tokenizer(args.model_name_or_path, fast_tokenizer=True)
+    tokenizer = load_hf_tokenizer(args.tokenizer_name_or_path, fast_tokenizer=True)
     tokenizer.pad_token = tokenizer.eos_token
     # make sure tokenizer is right pad in our logic
     tokenizer.padding_side = 'right'
